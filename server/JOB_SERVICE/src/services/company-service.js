@@ -7,5 +7,4 @@ class CompanyService extends CrudService {
         super(companyRepository,"CompanyService");
     }
 }
-
 module.exports = CompanyService;
