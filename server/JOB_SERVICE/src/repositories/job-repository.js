@@ -11,12 +11,12 @@ class JobRepository extends CrudRepository {
     async getAll(filter) {
         //Filter can be empty
         try {
-          if (filter.name) {
+          if (filter.title) {
             console.log(filter);
             const jobs = await Job.findAll({
               where: {
                 title: {
-                  [Op.startsWith]: filter.name,
+                  [Op.startsWith]: filter.title,
                 },
               },
             });
