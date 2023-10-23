@@ -19,7 +19,7 @@ module.exports = {
       updatedAt: new Date(),
       },
       {
-        name: 'CUSTOMER',
+        name: 'USER',
         createdAt:new Date(),
         updatedAt: new Date(),
       },
