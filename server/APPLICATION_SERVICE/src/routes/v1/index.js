@@ -10,12 +10,6 @@ const router = express.Router();
 // router.delete('/companies/:id',JobMiddleware.authorizeAdmin, CompanyController.destroy); //admin
 // router.get('/companies',CompanyController.getAll);
 
-// router.post('/jobs',JobMiddleware.authorizeAdmin,JobMiddleware.validateCreateJob,JobController.create); //admin
-// router.get('/jobs/:id',JobController.get);
-// router.get('/jobs',JobController.getAll);
-// router.patch('/jobs/:id',JobController.update); //admin
-// router.delete('/jobs/:id',JobMiddleware.authorizeAdmin,JobController.destroy); //admin
-
 
 
 
