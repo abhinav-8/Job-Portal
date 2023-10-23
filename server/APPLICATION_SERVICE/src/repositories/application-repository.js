@@ -7,7 +7,7 @@ class ApplicationRepository {
             const result = await Application.create(data);
             return result;
         } catch (error) {
-            console.log(`${this.name} : Something went wrong in crud repository layer`);
+            console.log(`ApplicationRepository : Something went wrong in repository layer`);
             throw {error};
         }
     }
@@ -17,7 +17,7 @@ class ApplicationRepository {
             const result  = await Application.findByPk(applicationId);
             return result;
         } catch (error) {
-            console.log(`${this.name} : Something went wrong in crud repository layer`);
+            console.log(`ApplicationRepository : Something went wrong in repository layer`);
             throw {error};
         }
     }
@@ -27,7 +27,7 @@ class ApplicationRepository {
             const result = await Application.findAll();
             return result;
         } catch (error) {
-            console.log(`${this.name} : Something went wrong in crud repository layer`);
+            console.log(`ApplicationRepository : Something went wrong in repository layer`);
             throw {error};
         }
     }
@@ -41,7 +41,7 @@ class ApplicationRepository {
               });
               return true;
         } catch (error) {
-            console.log(`${this.name} : Something went wrong in crud repository layer`);
+            console.log(`ApplicationRepository : Something went wrong in repository layer`);
             throw {error};
         }
     }
