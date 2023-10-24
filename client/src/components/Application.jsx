@@ -1,4 +1,4 @@
-import { Button, Card, Input } from "antd";
+import { Button, Card, Input,message } from "antd";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -89,9 +89,19 @@ function Application() {
                 "Authorization": `Bearer ${token}`,
             }
         });
-        console.log(data);
+        await message.open({
+            type: 'success',
+            content: 'Successfully applied to the job',
+            time:2
+        });
+        navigate('/');
     } catch (error) {
-      throw error;
+        message.open({
+            type: 'error',
+            content: error.response.data.err.error,
+            time:2
+        });
+      console.log(error.response.data.err.error);
     }
   }
   return (

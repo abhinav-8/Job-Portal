@@ -1,10 +1,10 @@
-import { Button, Card, Input } from "antd";
+import { Button, Card , message} from "antd";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { useSelector, useDispatch } from "react-redux";
-import { setUserEmail, setUserId, setUserName } from "../store/userSlice";
+import {  useDispatch } from "react-redux";
+import { setUserId, setUserName } from "../store/userSlice";
 
 function Job() {
   const navigate = useNavigate();
@@ -46,6 +46,24 @@ function Job() {
     isAuthenticated();
   }, []);
 
+  async function checkApplied(e,jobId){
+    try {
+      e.preventDefault();
+      let data = await axios.get(`http://localhost:3002/applicationservice/api/v1/applied/${userId}/${jobId}`);
+      if(data.data.data === true){
+        await message.open({
+          type: 'info',
+          content: 'You have already applied to this job',
+          time:2
+        });
+      }
+      else{
+        navigate(`/jobs/${jobId}`)
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
   return (
     <div>
       <div className="mt-10 w-screen text-center font-semibold text-black text-2xl">
@@ -72,8 +90,8 @@ function Job() {
                     <Button
                       htmlType="submit"
                       loading={loader}
-                      onClick={()=>navigate(`/jobs/${jobId}`)}
-                      className="bg-[#000B80] px-10  font-poppins text-sm font-semibold tracking-[0.03em] leading-6 text-white-100"
+                      onClick={(e)=>checkApplied(e,jobId)}
+                      className="bg-[#000B80] px-10 h-10 font-poppins text-sm font-semibold tracking-[0.03em] leading-6 text-white-100"
                     >
                       Apply
                     </Button>

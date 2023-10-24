@@ -1,4 +1,4 @@
-import { Button, Card, Input } from "antd";
+import { Button, Card, Input,message } from "antd";
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -59,7 +59,11 @@ function Signin() {
             dispatch(setUserEmail(data.email)); 
             dispatch(setUserName(data.name)); 
             dispatch(setUserId(data.id)); 
-            console.log(data);
+            await message.open({
+              type: 'success',
+              content: 'Successfully Signed In',
+              time:2
+          });
             navigate('/');
         } catch (error) {
             setLoader(false);
