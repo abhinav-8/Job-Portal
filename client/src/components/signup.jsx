@@ -6,15 +6,16 @@ import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { setUserEmail,setUserId,setUserName } from "../store/userSlice";
 
-function Signin() {
+function Signup() {
 
     const navigate=useNavigate();
     const dispatch=useDispatch();
-    const [inputUsername, setInputUserName] = useState('');
+    const [inputUsername, setInputUsername] = useState('');
+    const [inputEmailId, setInputEmailId] = useState('');
     const [password, setPassword] = useState('');
     const [loader, setLoader] = useState(false);
     const [wrongCredentials,setWrongCredentials] = useState(false);
-
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(()=>{
       async function isAuthenticated() {
@@ -25,6 +26,7 @@ function Signin() {
               Authorization:`Bearer ${token}`
             }
           });
+          console.log(response);
           if(response.data.success === true) {
             dispatch(setUserEmail(response.data.data.email));
             dispatch(setUserId(response.data.data.id));
@@ -33,7 +35,7 @@ function Signin() {
           }
         } catch (error) {
           console.log(error);
-          navigate('/signin');
+          navigate('/signup');
         }
       }
       isAuthenticated();
@@ -44,38 +46,39 @@ function Signin() {
             setLoader(true);
             setWrongCredentials(false);
             const user = {
-                email:inputUsername,
-                password:password
+                name:inputUsername,
+                password:password,
+                email:inputEmailId,
             }
             let userDetails = new URLSearchParams(Object.entries(user)).toString();
-            let data = await axios.post("http://localhost:3001/authservice/api/v1/login",userDetails,{
+            let data = await axios.post("http://localhost:3001/authservice/api/v1/signup",userDetails,{
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
                 }
             });
-            data=data.data.data;
+            data=data.data.data.token;
             //Http Only Cookie
             Cookies.set('token',data.token,{expires:1/12,secure:true});
             dispatch(setUserEmail(data.email)); 
             dispatch(setUserName(data.name)); 
             dispatch(setUserId(data.id)); 
-            console.log(data);
             navigate('/');
         } catch (error) {
             setLoader(false);
             setWrongCredentials(true);
-            console.log(error);
+            setErrorMessage(error.response.data.err.error.error.errors[0].message)
+            console.log(error.response.data.err.error.error.errors[0].message);
         }
     }
     const formValidation = () => {
-        return inputUsername === '' || password === '';
+        return inputUsername === '' || password === '' || inputEmailId === '';
     };
   return (
     <div>
       <div className="px-3 sm:px-0 w-screen h-screen flex justify-center items-center">
         <Card className="bg-slate-100login-card w-[384px] shadow-2xl">
           <div className="flex justify-center text-black-100 w-auto h-auto font-poppins font-bold text-xl leading-6 tracking-[0.01em] w-24px pt-6 ">
-            Signin to Job-Portal
+            Signup to Job-Portal
           </div>
           <form
             className="px-6 mt-6"
@@ -87,10 +90,19 @@ function Signin() {
           >
             <div className="flex justify-center">
               <Input
-                placeholder={"Enter Email Id"}
+                placeholder={"Enter Your Name"}
                 type={"text"}
                 value={inputUsername}
-                onChange={(e) => setInputUserName(e.target.value)}
+                onChange={(e) => setInputUsername(e.target.value)}
+                className="inline-block px-4 py-2 text-primary-200 font-poppins border-[#000000A8] border-2 text-sm"
+              />
+            </div>
+            <div className="flex justify-center pt-4">
+              <Input
+                placeholder={"Enter Your Email"}
+                type={"text"}
+                value={inputEmailId}
+                onChange={(e) => setInputEmailId(e.target.value)}
                 className="inline-block px-4 py-2 text-primary-200 font-poppins border-[#000000A8] border-2 text-sm"
               />
             </div>
@@ -106,7 +118,7 @@ function Signin() {
           </form>
           {wrongCredentials && (
             <div className="flex justify-center items-center text-sm font-poppins tracking-[0.01em] pt-4 leading-5 font-medium text-[#8C2A20]">
-              Oops! You have entered invalid credentials
+              {errorMessage}
             </div>
           )}
 
@@ -116,17 +128,17 @@ function Signin() {
               loading={loader}
               disabled={formValidation()}
               onClick={(e) => authenticate(e)}
-              className="bg-[#000B80] px-10 font-poppins text-sm font-semibold tracking-[0.03em] leading-6 text-white-100 login-login-button"
-            >Sign in</Button>
+              className="bg-[#000B80] px-10 font-poppins text-sm font-semibold tracking-[0.03em] leading-6 text-white-100"
+            >Sign up</Button>
           </div>
           <div className="flex justify-center font-poppins text-sm font-medium leading-5 pt-6 tracking-[0.01em] text-primary-200">
             <p>
-              Don&apos;t have an Account?{" "}
+              Already have an Account?{" "}
               <a
-                href="/signup"
+                href="/signin"
                 className="text-center no-underline text-primary-100 text-sm font-bold"
               >
-                Create new.
+                Login Here.
               </a>
             </p>
           </div>
@@ -136,4 +148,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default Signup;

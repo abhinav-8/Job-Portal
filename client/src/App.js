@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import Signin from "./components/Signin";
+import Signup from "./components/signup";
 function App() {
   return (
     <Provider store={store}>
@@ -10,7 +11,7 @@ function App() {
         <Routes>
           {/* <Route path="*" element={<Error />}/> */}
           <Route path="/signin" element={<Signin />} />
-          {/* <Route path="/signup" element={<Signup />} /> */}
+          <Route path="/signup" element={<Signup />} />
           {/* <Route path="/" element={<Jobs />} /> */}
           {/* <Route path="/jobs/:id" element={<Application />} /> */}
         </Routes>
