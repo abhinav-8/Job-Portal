@@ -40,14 +40,16 @@ class ApplicationRepository {
                     userId:userId
                 }   
             });
-            if(result) return true;
+            if(result) {
+                return true;
+            }
             return false;
         } catch (error) {
             console.log(`ApplicationRepository : Something went wrong in repository layer`);
             throw {error};
         }
     }
-    
+
     async destroy(applicationId) {
         try {
             await Application.destroy({

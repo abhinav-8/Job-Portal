@@ -87,10 +87,31 @@ const destroy = async (req,res) => {
     }
 }
 
+//GET -> /applied/:userId/:jobId
+const alreadyApplied = async (req,res) => {
+    try {
+        const response = await applicationService.alreadyApplied(req.params.userId,req.params.jobId);
+        return res.status(successCodes.OK).json({
+            data: response,
+            success: true,
+            message: 'Successfully checked whether user has already applied for this job',
+            err: {}
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(serverErrorCodes.INTERNAL_SERVOR_ERROR).json({
+            data: {},
+            success: false,
+            message: 'Oops! Some error occurred, can\'t check whether user has already applied for this job',
+            err: error
+        });
+    }
+}
 
 module.exports = {
     create,
     get,
     getAll,
     destroy,
+    alreadyApplied
 }

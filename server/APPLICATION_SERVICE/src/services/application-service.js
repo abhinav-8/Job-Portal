@@ -7,7 +7,8 @@ class ApplicationService {
         try {
             const userId = data.userId;
             const jobId = data.jobId;
-            if(this.alreadyApplied(userId,jobId)){
+            const checkApplied  = await this.alreadyApplied(userId,jobId);
+            if(checkApplied){
                 throw ('Already Applied to this job');
             }
             const response = await appRepository.create(data);
