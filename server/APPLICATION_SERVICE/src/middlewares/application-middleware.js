@@ -5,13 +5,13 @@ const axios = require('axios');
 const authenticateUser =  async (req, res, next) => {
     try {
         const response = await axios.get(
-            `${AUTH_SERVICE_PATH_LOCAL}/authservice/api/v1/isAuthenticated`,{
+            `${AUTH_SERVICE_PATH_LOCAL}/api/v1/isAuthenticated`,{
               headers: {
                 'Authorization': req.headers['authorization'],
               },
             }
           );
-        
+        console.log(response);
         if (response.data.success) {
           next();
         } else {

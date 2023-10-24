@@ -32,6 +32,22 @@ class ApplicationRepository {
         }
     }
 
+    async alreadyApplied(userId,jobId){
+        try {
+            const result = await Application.findOne({
+                where: {
+                    jobId:jobId,
+                    userId:userId
+                }   
+            });
+            if(result) return true;
+            return false;
+        } catch (error) {
+            console.log(`ApplicationRepository : Something went wrong in repository layer`);
+            throw {error};
+        }
+    }
+    
     async destroy(applicationId) {
         try {
             await Application.destroy({
