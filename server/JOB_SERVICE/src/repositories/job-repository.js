@@ -38,6 +38,23 @@ class JobRepository extends CrudRepository {
           throw { error };
         }
     }
+    async get(id) {
+        try {
+            const job = await Job.findOne({
+                where:{
+                    id:id
+                },
+                include: {
+                    model: Company,
+                    attributes:['name']
+                 }
+            });
+            return job;
+        } catch (error) {
+            console.log("JobRepository: Something went wrong in repository layer");
+          throw { error };
+        }
+    }
 }
 
 module.exports = JobRepository;

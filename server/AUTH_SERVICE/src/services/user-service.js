@@ -112,7 +112,11 @@ class UserService {
       if(!user) {
         throw {error: "This user doesn't exist"};
       }
-      return user.id;
+      return {
+        id:user.id,
+        email:user.email,
+        name:user.name
+      };
     } catch (error) {
       throw {error};
     }
