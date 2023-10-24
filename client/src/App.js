@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import Signin from "./components/Signin";
 import Signup from "./components/signup";
 import Job from "./components/Job";
+import Application from "./components/Application";
 function App() {
   return (
     <Provider store={store}>
@@ -14,7 +15,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<Job />} />
-          {/* <Route path="/jobs/:id" element={<Application />} /> */}
+          <Route path="/jobs/:jobId" element={<Application />} />
         </Routes>
       </BrowserRouter>
     </Provider>
