@@ -1,5 +1,5 @@
 # JobPortal's Auth Service 
-The Auth Service provides secure user authentication using JWT tokens. It manages user roles and permissions, allowing seamless access control.Passwords are not directly stored in the database,they are encrypted and hence ensure data integrity. It enhances TravelAero's security framework and user experience.
+The Auth Service provides secure user authentication using JWT tokens. It manages user roles and permissions, allowing seamless access control.Passwords are not directly stored in the database,they are hashed using bcrypt and hence ensure data integrity. 
 
 ## Setup and Installation :
 

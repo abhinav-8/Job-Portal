@@ -11,7 +11,6 @@ const authenticateUser =  async (req, res, next) => {
               },
             }
           );
-        console.log(response);
         if (response.data.success) {
           next();
         } else {

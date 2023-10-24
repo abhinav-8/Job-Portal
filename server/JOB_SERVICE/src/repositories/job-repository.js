@@ -1,5 +1,5 @@
 const CrudRepository = require("./crud-repository");
-const { Job } = require("../models/index");
+const { Job,Company } = require("../models/index");
 const { Op } = require("sequelize");
 
 
@@ -19,10 +19,19 @@ class JobRepository extends CrudRepository {
                   [Op.startsWith]: filter.title,
                 },
               },
+              include: {
+                model: Company,
+                attributes:['name']
+             }
             });
             return jobs;
           }
-          const jobs = await Job.findAll();
+          const jobs = await Job.findAll({
+            include: {
+                model: Company,
+                attributes:['name']
+             }
+          });
           return jobs;
         } catch (error) {
           console.log("JobRepository: Something went wrong in repository layer");
