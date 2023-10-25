@@ -2,19 +2,37 @@
 
 This is a platform where user can look for jobs and apply for them.
 
-## Snapshots
+## DEMO: 
 
-Signup:
-![signup](https://github.com/abhinav-8/Job-Portal/assets/72845356/6ab18f57-deb4-4af3-a7a7-9afe63559b27)
+https://github.com/abhinav-8/Job-Portal/assets/72845356/5548c146-0d18-4874-b62d-060dcde12eda
 
-Signin:
-![signin](https://github.com/abhinav-8/Job-Portal/assets/72845356/e7e42fdf-1427-48dc-a2b7-e60d5e6bd8c2)
 
-List of jobs:
-![list-of-jobs](https://github.com/abhinav-8/Job-Portal/assets/72845356/748cd644-f2fb-494b-825b-ade821aa17dc)
+**Tech Stack:** Express.js(Node.js), React.js,AntDesign,Tailwind CSS, Javascript
 
-Job Details:
-![job-description](https://github.com/abhinav-8/Job-Portal/assets/72845356/54f5db33-20b6-4547-b8b9-c1f95b60ab61)
+**Features:**
 
-Job application successful:
-![job_applied](https://github.com/abhinav-8/Job-Portal/assets/72845356/42eb36e8-c4ec-453a-bb43-e0f8cdd42e20)
+- Users can signup and signin ,have used JWT based authorization
+
+- Companies can create profiles and create job openings with the description,requirements,experience etc. 
+
+- Users can apply to these jobs,one user can apply to a job only one time
+
+**Project Structure and Design:**
+
+- Implemented a microservices architecture utilising HTTP communication for enhanced code quality, abstraction, and exploratory purposes. Due to time limitations, an API gateway for streamlined communication and acting as a reverse proxy was not developed.
+
+- Employed a SQL database, specifically MySQL, and utilised the Sequelize ORM due to the project's well-defined data structure and relatively moderate scale.
+
+- Implemented secure frontend authentication by storing JWT tokens in HTTP-only cookies, ensuring enhanced security measures for user session management.
+
+- Have also integrated swagger for api contract in AUTH Service
+
+![Architecture ](https://github.com/abhinav-8/Job-Portal/assets/72845356/3f36a48b-2cc0-430d-b013-f223d2afdee3)
+
+
+
+
+
+
+
+
