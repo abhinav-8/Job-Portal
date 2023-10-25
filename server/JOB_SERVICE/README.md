@@ -24,7 +24,7 @@ The Job Service ensures that companies can create their profile here and create 
   * `npx sequelize db:create`
   * `npx sequelize db:migrate`
 
-- Go to `APPLICATION_SERVICE` and start the server by `npm start`
+- Go to `JOB_SERVICE` and start the server by `npm start`
 - Uncomment line no `6 and 22` in index.js and then comment it again,once the db get synced
 <br>
 
