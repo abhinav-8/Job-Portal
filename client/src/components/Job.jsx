@@ -38,9 +38,10 @@ function Job() {
           console.log("data", data);
           setJobData(data.data.data);
         }
+        else navigate("/signup"); 
       } catch (error) {
         console.log(error);
-        // navigate("/signup");
+        navigate("/signup");
       }
     }
     isAuthenticated();
